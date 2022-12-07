@@ -2,11 +2,13 @@ FROM node
 
 WORKDIR /app
 
-COPY package.json /app
+COPY package.json .
 
-RUN npm i
+COPY package-lock.json .
 
-COPY . /app
+RUN npm install
+
+COPY . .
 
 EXPOSE 80
 

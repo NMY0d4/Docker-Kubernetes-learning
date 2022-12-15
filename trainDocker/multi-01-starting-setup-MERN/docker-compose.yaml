@@ -20,9 +20,9 @@ services:
         ports:
             - "80:80"
         volumes:
-            - logs:/app/logs
-            - ./backend:/app
-            - /app/node_modules
+            - logs:/app/logs # volume name garde la data mm si le container est arrêté
+            - ./backend:/app # bind, pour modifier les en direct les datas dans le container(notre programme)
+            - /app/node_modules # volume provisoire, s'efface quand on supprime le container(flux vers nodes_module pour éviter d'écraser avec le bind)
         env_file:
             - ./env/backend.env
         depends_on:

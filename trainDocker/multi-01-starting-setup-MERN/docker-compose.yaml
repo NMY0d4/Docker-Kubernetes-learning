@@ -9,35 +9,35 @@ services:
         #     - MONGO_INITDB_ROOT_PASSWORD=password
         env_file:
             - ./env/mongo.env
-    backend:
-        build:
-            ./backend
-            # build:
-            #   context: ./backend
-            #   dockerfile: Dockerfile
-            #   args:
-            #     some-arg: 1
-        ports:
-            - "80:80"
-        volumes:
-            - logs:/app/logs # volume name garde la data mm si le container est arrêté
-            - ./backend:/app # bind, pour modifier les en direct les datas dans le container(notre programme)
-            - /app/node_modules # volume provisoire, s'efface quand on supprime le container(flux vers nodes_module pour éviter d'écraser avec le bind)
-        env_file:
-            - ./env/backend.env
-        depends_on:
-            - mongodb
-    frontend:
-        build: ./frontend
-        ports:
-            - "3000:3000"
-        volumes:
-            - ./frontend/src:/app/src
-        stdin_open: true
-        tty: true
-        depends_on:
-            - backend
+    # backend:
+    #     build:
+    #         ./backend
+    #         # build:
+    #         #   context: ./backend
+    #         #   dockerfile: Dockerfile
+    #         #   args:
+    #         #     some-arg: 1
+    #     ports:
+    #         - "80:80"
+    #     volumes:
+    #         - logs:/app/logs # volume name garde la data mm si le container est arrêté
+    #         - ./backend:/app # bind, pour modifier les en direct les datas dans le container(notre programme)
+    #         - /app/node_modules # volume provisoire, s'efface quand on supprime le container(flux vers nodes_module pour éviter d'écraser avec le bind)
+    #     env_file:
+    #         - ./env/backend.env
+    #     depends_on:
+    #         - mongodb
+    # frontend:
+    #     build: ./frontend
+    #     ports:
+    #         - "3000:3000"
+    #     volumes:
+    #         - ./frontend/src:/app/src
+    #     stdin_open: true
+    #     tty: true
+    #     depends_on:
+    #         - backend
 
 volumes:
     data:
-    logs:
+    # logs:
